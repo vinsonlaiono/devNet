@@ -31,7 +31,7 @@ router.post(
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Password is required').exists()
     ],
-    // Handles body of POST request
+    // create a new profile
     async (req, res) => {
         const errors = validationResult(req);
         // Check if any errors were stored in the errors object
