@@ -71,7 +71,7 @@ router.post(
                 payload,
                 // this token "mysecrettoken" should be coming from default.json file but config is not being recognized
                 // need to fix config dependency. This is the same issue with db name mongoURI
-                'mysecrettoken',    
+                'mysecrettoken',
                 { expiresIn: 360000 },
                 (err, token) => {
                     if (err) throw err;
