@@ -4,8 +4,7 @@ const config = require('config');
 
 const connectDB = async () => {
     try {
-        // await mongoose.connect('mongodb://localhost/devNet', {
-        await mongoose.connect('mongodb://localhost/devNet', {
+        await mongoose.connect(config.get('mongoURI'), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndexe: true
