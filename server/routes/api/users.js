@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
-const config = require('config'); // *** NOT WORKING ***
+const config = require('config');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
@@ -69,9 +69,7 @@ router.post(
 
             jwt.sign(
                 payload,
-                // this token "mysecrettoken" should be coming from default.json file but config is not being recognized
-                // need to fix config dependency. This is the same issue with db name mongoURI
-                'mysecrettoken',
+                config.get('jwtSecret'),
                 { expiresIn: 360000 },
                 (err, token) => {
                     if (err) throw err;
