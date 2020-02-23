@@ -8,8 +8,8 @@ const User = require('../../models/Users');
 const Profile = require('../../models/Profile');
 
 // @route   Get api/posts
-// @desc    Test route
-// @access  Public
+// @desc    Create a new post
+// @access  Private
 router.get(
     '/',
     [
@@ -25,8 +25,8 @@ router.get(
         }
 
         try {
-            const user = User.findById(req.user.id).select('-password');
-
+            const user = await User.findById(req.user.id).select('-password');
+            console.log(user.name)
             const newPost = new Post({
                 text: req.body.text,
                 name: user.name,
@@ -35,7 +35,7 @@ router.get(
             });
 
             const post = await newPost.save();
-
+            
             res.json(post);
         } catch (err) {
             console.error(err);
